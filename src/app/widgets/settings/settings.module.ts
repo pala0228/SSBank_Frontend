@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CardsComponent } from './cards.component';
+import { SettingsComponent } from './settings.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const ROUTES: Routes = [
   {
-    path: "cards",
-    component: CardsComponent
+    path: "settings",
+    component: SettingsComponent
   }
 ]
 
 @NgModule({
   declarations: [
-    CardsComponent
+    SettingsComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES)
   ]
 })
-export class CardsModule { }
+export class SettingsModule { }
