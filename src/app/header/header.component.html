@@ -1,1 +1,61 @@
-<p>header works!</p>
+<mat-toolbar color="primary" class="header">
+  <!-- logo  -->
+  <div class="header__logo">
+    <div class="header__logo-text text-align-center">
+      <div>
+        <mat-icon color="accent">account_balance</mat-icon>
+      </div>
+      <div>Self Service</div>
+      <div>Bank</div>
+    </div>
+  </div>
+  <!-- space divider  -->
+  <div class="header__divider"></div>
+  <!-- menu options -->
+  <div fxLayout="row" class="width-100">
+    <div fxLayout="row" style="margin: auto;" class="width-75" fxLayoutAlign="space-around center">
+      <div>
+        <button mat-button [ngClass]="{'active': routerUrl.includes('dashboard')}" (click)="navigateTo('dashboard')">
+          <mat-icon>dashboard</mat-icon>Dashboard
+        </button>
+      </div>
+      <div>
+        <button mat-button [ngClass]="{'active': routerUrl.includes('recipients')}" (click)="navigateTo('recipients')">
+          <mat-icon>person_add</mat-icon>Recipients
+        </button>
+      </div>
+      <div>
+        <button mat-button [ngClass]="{'active': routerUrl.includes('transfer-funds')}"
+          (click)="navigateTo('transfer-funds')">
+          <mat-icon> transfer_within_a_station</mat-icon>Pay
+        </button>
+      </div>
+      <div>
+        <button mat-button [ngClass]="{'active': routerUrl.includes('loans')}" (click)="navigateTo('loans')">
+          <mat-icon> money</mat-icon>Loans
+        </button>
+      </div>
+      <div>
+        <button mat-button [ngClass]="{'active': routerUrl.includes('cards')}" (click)="navigateTo('cards')">
+          <mat-icon>credit_card</mat-icon>Cards
+        </button>
+      </div>
+      <div>
+        <button mat-button [ngClass]="{'active': routerUrl.includes('offers')}" (click)="navigateTo('offers')">
+          <mat-icon> local_offer</mat-icon>Offers
+        </button>
+      </div>
+      <div>
+        <button mat-button [ngClass]="{'active': routerUrl.includes('settings')}" (click)="navigateTo('settings')">
+          <mat-icon>perm_data_setting</mat-icon>Settings
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- logout button  -->
+  <div>
+    <button mat-button (click)="onLogout()">
+      <mat-icon>power_settings_new</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

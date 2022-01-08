@@ -3,12 +3,12 @@
     <app-sidenav></app-sidenav>
   </mat-sidenav>
   <mat-sidenav-content>
-    <main>
+    <main fxLayout="column" fxLayoutGap="3px" fxFlexFill>
       <div>
         <app-header></app-header>
       </div>
-      <div>
-        <app-widgets></app-widgets>
+      <div fxFlex="calc(100vh - 120px)">
+        <router-outlet></router-outlet>
       </div>
       <div>
         <app-footer></app-footer>
