@@ -29,7 +29,16 @@
 }
 .active {
   color: #232f34;
-  font-size: 1.1rem !important;
+}
+.active::before {
+  position: absolute;
+  background: red;
+  height: 1.5px;
+  content: "";
+  width: 100%;
+  bottom: -50%;
+  right: 0;
+  left: 0;
 }
 
 :host {
