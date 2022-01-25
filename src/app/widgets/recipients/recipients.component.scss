@@ -1,0 +1,25 @@
+.recipients {
+  &__title {
+    position: relative;
+  }
+  &__title-text {
+    font-size: 1.6rem;
+    width: fit-content;
+    font-weight: 400;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  &__view-recipients {
+    position: relative;
+  }
+  &__align {
+    margin: auto;
+    height: 100%;
+  }
+  &__card-title {
+    font-weight: 300;
+    font-size: 1.2rem;
+  }
+}

@@ -9,6 +9,8 @@ import { LoansModule } from './loans/loans.module';
 import { CardsModule } from './cards/cards.module';
 import { OffersModule } from './offers/offers.module';
 import { SettingsModule } from './settings/settings.module';
+import { SharedModule } from '../shared/shared.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const ROUTES: Routes = [
 ]
@@ -18,11 +20,9 @@ const ROUTES: Routes = [
     WidgetsComponent
   ],
   imports: [
-    CommonModule
-  ],
-  exports: [
-    WidgetsComponent,
+    CommonModule,
     // imported modules
+    SharedModule,
     DashboardModule,
     RecipientsModule,
     PayModule,
@@ -30,6 +30,9 @@ const ROUTES: Routes = [
     CardsModule,
     OffersModule,
     SettingsModule
+  ],
+  exports: [
+    WidgetsComponent
   ]
 })
 export class WidgetsModule { }

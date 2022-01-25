@@ -1,1 +1,30 @@
-<p>recipients works!</p>
+<div class="page-container recipients">
+  <div fxFlex="100%" fxLayoutGap="5px" fxLayout="column">
+    <!-- title  -->
+    <div fxFlex="25%" class="recipients__title">
+      <div class="recipients__title-text">
+        Would you like to manage recipients from same bank or other bank?
+      </div>
+    </div>
+    <div fxFlex="75%" class="recipients__view-recipients">
+      <div fxFlex="55%" fxLayout="row" fxLayoutGap="1rem" class="recipients__align">
+        <!-- recipients from same bank  -->
+        <div fxFlex>
+          <app-view-recipient-card>
+            <span class="recipients__card-title">Manage Recipients From Same Bank</span>
+            <button color="primary" (click)="onView('same-bank')" mat-stroked-button>View<mat-icon>arrow_forward
+              </mat-icon></button>
+          </app-view-recipient-card>
+        </div>
+        <!-- recipients from other bank  -->
+        <div fxFlex>
+          <app-view-recipient-card>
+            <span class="recipients__card-title">Manage Recipients From Other Bank</span>
+            <button color="primary" (click)="onView('other-bank')" mat-stroked-button>View<mat-icon>arrow_right_alt
+              </mat-icon></button>
+          </app-view-recipient-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

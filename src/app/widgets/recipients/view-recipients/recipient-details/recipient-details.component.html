@@ -1,0 +1,110 @@
+<div fxLayout="column" class="recipients-details" fxLayoutGap="2rem">
+  <!-- recipient name details  -->
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutGap="2rem">
+      <button mat-mini-fab>KP</button>
+      <div fxLayout="column">
+        <div>
+          <span class="text-header">
+            {{ selectedRecipient?.recipientName?.firstName + '&nbsp;' + selectedRecipient?.recipientName?.lastName}}
+          </span>
+        </div>
+        <div (click)="onEditDetails(selectedRecipient)" class="recipients-details__edit-details">
+          <mat-card-subtitle>Edit Details</mat-card-subtitle>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button mat-button (click)="onDeleteRecipient(selectedRecipient)" color="primary">
+        <mat-icon>delete</mat-icon>Delete Recipient
+      </button>
+    </div>
+  </div>
+  <!-- recipient bank details  -->
+  <div fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div>
+        <h4 class="text-header">
+          Bank Account Details
+        </h4>
+      </div>
+      <div style="margin: 0 0  16px;">
+        <button mat-button color="primary">
+          <mat-icon>payment</mat-icon>Pay
+        </button>
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutGap="1rem">
+      <div fxFlex="100%" fxLayout="row">
+        <div fxFlex="33" fxLayout="row">
+          <div>
+            <mat-card-subtitle>Account No&nbsp;:&nbsp;</mat-card-subtitle>
+          </div>
+          <div>
+            {{selectedRecipient?.account?.accountNumber}}
+          </div>
+        </div>
+        <div fxFlex="33" fxLayout="row">
+          <div>
+            <mat-card-subtitle>Branch Name&nbsp;:&nbsp;</mat-card-subtitle>
+          </div>
+          <div>
+            {{selectedRecipient?.account?.branchName}}
+          </div>
+        </div>
+        <div fxFlex="33" fxLayout="row">
+          <div>
+            <mat-card-subtitle>Branch Code&nbsp;:&nbsp;</mat-card-subtitle>
+          </div>
+          <div>
+            {{selectedRecipient?.account?.branchCode}}
+          </div>
+        </div>
+      </div>
+      <div fxFlex="100%" fxLayout="row">
+        <div fxFlex="33" fxLayout="row">
+          <div>
+            <mat-card-subtitle>Your Reference&nbsp;:&nbsp;</mat-card-subtitle>
+          </div>
+          <div>
+            {{selectedRecipient?.yourReference}}
+          </div>
+        </div>
+        <div fxFlex="33" fxLayout="row">
+          <div>
+            <mat-card-subtitle>Their Reference&nbsp;:&nbsp;</mat-card-subtitle>
+          </div>
+          <div>
+            {{selectedRecipient?.theirReference}}
+          </div>
+        </div>
+        <div fxFlex="33" fxLayout="row">
+          <div></div>
+        </div>
+      </div>
+      <div fxFlex="100%" fxLayout="row">
+        <div fxFlex="33" fxLayout="row">
+          <div>
+            <mat-card-subtitle>Cell number&nbsp;:&nbsp;</mat-card-subtitle>
+          </div>
+          <div>
+            {{selectedRecipient?.contact?.cellNumber}}
+          </div>
+        </div>
+        <div fxFlex="33" fxLayout="row">
+          <div>
+            <mat-card-subtitle>Email ID&nbsp;:&nbsp;</mat-card-subtitle>
+          </div>
+          <div>
+            {{selectedRecipient?.contact?.emailId}}
+          </div>
+        </div>
+        <div fxFlex="33" fxLayout="row">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="padding-bottom-8">
+    <mat-divider></mat-divider>
+  </div>
+</div>

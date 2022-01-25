@@ -1,0 +1,38 @@
+.view-transactions {
+  width: 100%;
+  height: 100%;
+}
+.table-container {
+  min-height: 200px;
+  max-height: 200px;
+  overflow: auto;
+}
+table {
+  width: 100%;
+}
+
+tr.detail-row {
+  height: 0;
+}
+tr.table-row:not(.expanded-table-row):hover {
+  background: whitesmoke;
+}
+tr.table-row:not(.expanded-table-row):active {
+  background: #efefef;
+}
+.table-row td {
+  border-bottom-width: 0;
+  cursor: pointer;
+}
+.row-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+:host {
+  ::ng-deep {
+    .mat-header-cell {
+      font-size: 13px !important;
+    }
+  }
+}

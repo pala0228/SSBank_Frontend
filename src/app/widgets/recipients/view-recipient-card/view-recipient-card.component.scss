@@ -1,0 +1,11 @@
+.view-card {
+  position: relative;
+  height: 100%;
+  &__alignment {
+    width: 100%;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+    position: absolute;
+  }
+}

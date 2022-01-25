@@ -1,0 +1,10 @@
+.view-recipients {
+  width: 100%;
+  height: 100%;
+  &__navigation-header {
+    height: 3rem;
+  }
+  &__details {
+    max-height: 550px;
+  }
+}

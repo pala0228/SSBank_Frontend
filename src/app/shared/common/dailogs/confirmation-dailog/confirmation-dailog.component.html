@@ -1,0 +1,25 @@
+<div class="page-container" style="width: 450px;" fxLayout="column" fxLayoutGap="1rem">
+  <!-- dialog title  -->
+  <div fxLayout fxLayoutAlign="center center">
+    <mat-card-title>
+      {{title}}
+    </mat-card-title>
+  </div>
+  <!-- dialog content  -->
+  <div class="padding-8">
+    <mat-card-content style="margin: 0;">
+      {{message }}
+    </mat-card-content>
+  </div>
+  <div>
+    <mat-card-actions style="margin: 0;" fxLayoutGap="5px" fxLayoutAlign="end end">
+      <div>
+        <button mat-button mat-dialog-close color="warn">Cancel</button>
+      </div>
+      <div>
+        <button mat-stroked-button color="primary" (click)="onAction(actionType)" [mat-dialog-close]="true"
+          cdkFocusInitial>{{actionType}}</button>
+      </div>
+    </mat-card-actions>
+  </div>
+</div>

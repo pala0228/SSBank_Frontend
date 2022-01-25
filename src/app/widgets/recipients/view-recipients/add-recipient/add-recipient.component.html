@@ -1,0 +1,252 @@
+<div class="add-recipient" fxLayout="column">
+  <div fxLayout="row" (click)="onClose()" class="padding-12 add-recipient__close-icon" fxLayoutAlign="end end">
+    <mat-icon style="font-size: 50px;">clear</mat-icon>
+  </div>
+  <!-- form  -->
+  <div fxLayout="row" class="width-100 height-100">
+    <form [formGroup]="newRecipientForm" class="width-100">
+      <div fxLayout="row" class="add-recipient__form-feilds padding-12">
+        <div fxLayout="column" fxLayoutGap="1rem">
+          <!-- recipient name details  -->
+          <div formGroupName="recipientName">
+            <div class="add-recipient__mat-form-width">
+              <mat-card-subtitle>First name</mat-card-subtitle>
+              <mat-form-field appearance="outline" class="width-100">
+                <input formControlName="firstName" type="text" matInput>
+                <mat-error *ngIf="newRecipientForm.get('recipientName.firstName')?.hasError('required')">
+                  Mandatory feild: First name.
+                </mat-error>
+                <mat-error *ngIf="newRecipientForm.get('recipientName.firstName')?.hasError('pattern')">
+                  Invalid first name, Only alphabets are allowed.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="add-recipient__mat-form-width">
+              <mat-card-subtitle>Last name</mat-card-subtitle>
+              <mat-form-field appearance="outline" class="width-100">
+                <input formControlName="lastName" type="text" matInput>
+                <mat-error *ngIf="newRecipientForm.get('recipientName.lastName')?.hasError('required')">
+                  Mandatory feild: Last name.
+                </mat-error>
+                <mat-error *ngIf="newRecipientForm.get('recipientName.lastName')?.hasError('pattern')">
+                  Invalid last name, Only alphabets are allowed.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <!-- account details  -->
+          <div formGroupName="account">
+            <div>
+              <span class="text-header">
+                Account details
+              </span>
+            </div>
+            <!-- account number  -->
+            <div fxLayout="row" *ngIf="!activateAccountNumber" (click)="activateAccountNumber = !activateAccountNumber"
+              class="add-recipient__account-number" fxLayoutAlign="start center">
+              <div class="add-recipient__account-details">
+                <mat-icon color="accent">add_circle_outline</mat-icon>
+              </div>
+              <div>
+                <span>Add Account number</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <div *ngIf="activateAccountNumber" class="add-recipient__mat-form-width">
+                <mat-card-subtitle>Account number</mat-card-subtitle>
+                <mat-form-field appearance="outline" class="width-100">
+                  <input formControlName="accountNumber" placeholder="Enter 8 digits account number" type="text"
+                    maxlength="8" matInput>
+                  <mat-error *ngIf="newRecipientForm.get('account.accountNumber')?.hasError('required')">
+                    Mandatory feild: Account number.
+                  </mat-error>
+                  <mat-error *ngIf="newRecipientForm.get('account.accountNumber')?.hasError('patternError')">
+                    Invalid account number, Only numbers are allowed.
+                  </mat-error>
+                  <mat-error *ngIf="newRecipientForm.get('account.accountNumber')?.hasError('lengthError')">
+                    Invalid, Enter 8 digits valid account number.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayoutAlign="end center" *ngIf="activateAccountNumber">
+                <button mat-mini-fab color="primary" (click)="activateAccountNumber = !activateAccountNumber">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </div>
+            </div>
+            <!-- branch name  -->
+            <div fxLayout="row" *ngIf="!activateBranchName" (click)="activateBranchName = !activateBranchName"
+              class="add-recipient__account-number" fxLayoutAlign="start center">
+              <div class="add-recipient__account-details">
+                <mat-icon color="accent">add_circle_outline</mat-icon>
+              </div>
+              <div>
+                <span>Add Branch name</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <div *ngIf="activateBranchName" class="add-recipient__mat-form-width">
+                <mat-card-subtitle>Branch name</mat-card-subtitle>
+                <mat-form-field appearance="outline" class="width-100">
+                  <mat-select placeholder="Select branch name" formControlName="branchName">
+                    <mat-option *ngFor="let branch of branches" [value]="branch?.branchCode">
+                      {{branch.branchName}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="newRecipientForm.get('account.branchName')?.hasError('required')">
+                    Mandatory feild: Branch name.
+                  </mat-error>
+                  <mat-error *ngIf="newRecipientForm.get('account.branchName')?.hasError('pattern')">
+                    Invalid branch name, Only alphabets are allowed.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayoutAlign="end center" *ngIf="activateBranchName">
+                <button mat-mini-fab color="primary" (click)="activateBranchName = !activateBranchName">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </div>
+            </div>
+            <!-- branch code  -->
+            <div fxLayout="row" *ngIf="!activateBranchCode" (click)="activateBranchCode = !activateBranchCode"
+              class="add-recipient__account-number" fxLayoutAlign="start center">
+              <div class="add-recipient__account-details">
+                <mat-icon color="accent">add_circle_outline</mat-icon>
+              </div>
+              <div>
+                <span>Add Branch code</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <div *ngIf="activateBranchCode" class="add-recipient__mat-form-width">
+                <mat-card-subtitle>Branch code</mat-card-subtitle>
+                <mat-form-field appearance="outline" class="width-100">
+                  <input formControlName="branchCode" placeholder="Enter 5 digits branch code" type="text" matInput
+                    maxlength="5">
+                  <mat-error *ngIf="newRecipientForm.get('account.branchCode')?.hasError('required')">
+                    Mandatory feild: Branch code.
+                  </mat-error>
+                  <mat-error *ngIf="newRecipientForm.get('account.branchCode')?.hasError('patternError')">
+                    Invalid branch code, Only numbers are allowed.
+                  </mat-error>
+                  <mat-error *ngIf="newRecipientForm.get('account.branchCode')?.hasError('lengthError')">
+                    Invalid, Enter 5 digts valid branch code.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayoutAlign="end center" *ngIf="activateBranchCode">
+                <button mat-mini-fab color="primary" (click)="activateBranchCode = !activateBranchCode">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- contact details  -->
+          <div formGroupName="contact">
+            <div>
+              <span class="text-header">
+                Contact details
+              </span>
+            </div>
+            <!-- cell number  -->
+            <div fxLayout="row" *ngIf="!activateCellNumber" (click)="activateCellNumber = !activateCellNumber"
+              class="add-recipient__account-number" fxLayoutAlign="start center">
+              <div class="add-recipient__account-details">
+                <mat-icon color="accent">add_circle_outline</mat-icon>
+              </div>
+              <div>
+                <span>Add Cell number</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <div *ngIf="activateCellNumber" class="add-recipient__mat-form-width">
+                <mat-card-subtitle>Cell number</mat-card-subtitle>
+                <mat-form-field appearance="outline" class="width-100">
+                  <div fxLayout="row" fxLayoutAlign="start center">
+                    <div>
+                      <span matPrefix>+91 &nbsp;</span>
+                    </div>
+                    <div>
+                      <input placeholder="Enter 10 digits contact" formControlName="cellNumber" maxlength="10"
+                        type="text" matInput>
+                    </div>
+                  </div>
+                  <mat-error *ngIf="newRecipientForm.get('contact.cellNumber')?.hasError('patternError')">
+                    Invalid cell number, Only numbers are allowed.
+                  </mat-error>
+                  <mat-error *ngIf="newRecipientForm.get('contact.cellNumber')?.hasError('lengthError')">
+                    Invalid cell number, Enter 10 digits valid number.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayoutAlign="end center" *ngIf="activateCellNumber">
+                <button mat-mini-fab color="primary" (click)="activateCellNumber = !activateCellNumber">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </div>
+            </div>
+
+            <!-- Email Id  -->
+            <div fxLayout="row" *ngIf="!activateEmail" (click)="activateEmail = !activateEmail"
+              class="add-recipient__account-number" fxLayoutAlign="start center">
+              <div class="add-recipient__account-details">
+                <mat-icon color="accent">add_circle_outline</mat-icon>
+              </div>
+              <div>
+                <span>Add Email Id</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <div *ngIf="activateEmail" class="add-recipient__mat-form-width">
+                <mat-card-subtitle>Email Id</mat-card-subtitle>
+                <mat-form-field appearance="outline" class="width-100">
+                  <input formControlName="emailId" type="text" matInput>
+                  <mat-error *ngIf="newRecipientForm.get('contact.emailId')?.hasError('email')">
+                    Invalid email id, Please enter valid email Id.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayoutAlign="end center" *ngIf="activateEmail">
+                <button mat-mini-fab color="primary" (click)="activateEmail = !activateEmail">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- reference details  -->
+          <div>
+            <div class="add-recipient__mat-form-width">
+              <mat-card-subtitle>Your reference</mat-card-subtitle>
+              <mat-form-field appearance="outline" class="width-100">
+                <input placeholder="Reflects on your transaction" formControlName="yourReference" type="text" matInput>
+                <mat-error *ngIf="newRecipientForm.get('yourReference')?.hasError('pattern')">
+                  Invalid your reference, Only alphanumeric are allowed.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="add-recipient__mat-form-width">
+              <mat-card-subtitle>Their reference</mat-card-subtitle>
+              <mat-form-field appearance="outline" class="width-100">
+                <input placeholder="Reflects on their statement" formControlName="theirReference" type="text" matInput>
+                <mat-error *ngIf="newRecipientForm.get('theirReference')?.hasError('pattern')">
+                  Invalid your reference, Only alphanumeric are allowed.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="width-100">
+        <mat-card-actions fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="10px">
+          <div>
+            <button (click)="onReset()" mat-button color="warn">Reset</button>
+          </div>
+          <div>
+            <button [disabled]="newRecipientForm.invalid" (click)="onSubmit()" mat-stroked-button
+              color="primary">Submit</button>
+          </div>
+        </mat-card-actions>
+      </div>
+    </form>
+  </div>
+</div>
