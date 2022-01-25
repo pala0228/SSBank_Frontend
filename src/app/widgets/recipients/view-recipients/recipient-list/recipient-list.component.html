@@ -1,0 +1,40 @@
+<div class="recipient-list">
+  <!-- search box  -->
+  <div class="width-100">
+    <form [formGroup]="searchRecipientForm">
+      <mat-form-field appearance="outline" class="width-100">
+        <mat-label>Search Recipient</mat-label>
+        <input type="search" matInput placeholder="Search by recipient name (or) account number"
+          formControlName="searchRecipient">
+        <mat-error *ngIf="searchRecipientForm.get('searchRecipient')?.hasError('pattern')">
+          Invalid search, Only alphanumeric data is allowed.
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <!-- recipients list view  -->
+  <div class="width-100 recipient-list__view">
+    <mat-selection-list #recipientsList [multiple]="false">
+      <mat-list-option (click)="onSelectRecipientRow(recipientsList)" style="height: fit-content; padding-top: 12px;"
+        *ngFor="let recipient of recipients" [value]="recipient">
+        <div fxLayout="column" fxLayoutGap="1rem">
+          <div>
+            <span>
+              {{recipient.recipientName?.firstName + '&nbsp;' + recipient.recipientName?.lastName}}
+            </span>
+          </div>
+          <div>
+            <mat-card-subtitle>
+              {{"Account No" + '&nbsp;:&nbsp;' + recipient.account?.accountNumber}} <br>
+              {{"Branch Name" + '&nbsp;:&nbsp;' + recipient.account?.branchName}} <br>
+              {{"Email ID" + '&nbsp;:&nbsp;' + recipient.contact?.emailId}}
+            </mat-card-subtitle>
+          </div>
+        </div>
+        <div>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+</div>

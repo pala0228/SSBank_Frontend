@@ -1,0 +1,23 @@
+<div class="view-card">
+  <div class="view-card__alignment">
+    <mat-card fxFlex="100%" fxLayout="column" fxLayoutAlign="center center">
+      <mat-card-title>
+        <mat-icon>people</mat-icon>
+      </mat-card-title>
+      <mat-card-content>
+        <div>
+          <ng-content select="span"></ng-content>
+        </div>
+        <div>
+          <mat-card-subtitle>
+            You can view, add, modify and delete recipients.
+          </mat-card-subtitle>
+        </div>
+      </mat-card-content>
+      <mat-divider inset></mat-divider>
+      <mat-card-actions>
+        <ng-content select="button"></ng-content>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

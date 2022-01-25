@@ -1,0 +1,42 @@
+<div fxLayout="column" fxLayoutGap="5px" class="page-container view-recipients">
+  <!-- Page navigation header  -->
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="view-recipients__navigation-header">
+    <div>
+      <button mat-button routerLink="/recipients" color="primary">
+        <mat-icon>arrow_back</mat-icon> My Recipients
+      </button>
+    </div>
+    <div *ngIf="!activateNewRecipient">
+      <button mat-button (click)="onAddRecipient()" color="primary">
+        <mat-icon>person_add</mat-icon> Add New Recipient
+      </button>
+    </div>
+  </div>
+  <div>
+    <mat-divider></mat-divider>
+  </div>
+  <div fxFlex="100%" fxLayout="row">
+    <!-- recipients list  -->
+    <div fxFlex="25%">
+      <app-recipient-list [source]="source" (selectedRecipient)="recipientRow($event)"></app-recipient-list>
+    </div>
+    <!-- recipient details -->
+    <div fxFlex="75%" *ngIf="!activateNewRecipient" class="view-recipients__details padding-8">
+      <!-- recipient details  -->
+      <div>
+        <app-recipient-details (editRecipientDetails)="receivedData($event)" [selectedRecipient]="selectedRecipient">
+        </app-recipient-details>
+      </div>
+      <!-- recipient last transactions details  -->
+      <div>
+        <app-recipient-transactions></app-recipient-transactions>
+      </div>
+    </div>
+    <!-- New recipient component  -->
+    <div fxFlex="75%" *ngIf="activateNewRecipient" class="view-recipients__details padding-8">
+      <app-add-recipient [selectedRecipient]="recipientDetails" (closeAddRecipientComponent)="activateDetails($event)"
+        *ngIf="activateNewRecipient">
+      </app-add-recipient>
+    </div>
+  </div>
+</div>

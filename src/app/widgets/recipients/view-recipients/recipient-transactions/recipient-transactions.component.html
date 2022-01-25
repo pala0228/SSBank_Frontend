@@ -1,0 +1,91 @@
+<div class="view-transactions">
+  <!-- header  -->
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <h4 class="text-header">
+        Last Payments
+      </h4>
+    </div>
+    <div *ngIf="toggleDownloadIcon">
+      <button mat-button color="primary">
+        <mat-icon>cloud_download</mat-icon>Download proof of payment
+      </button>
+    </div>
+  </div>
+  <!-- table with recipients list  -->
+  <div class="width-100 table-container">
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class=" mat-elevation-z8">
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          Select
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? onChange(row) : null"
+            [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Date Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+
+      <!-- Amount Column -->
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+      </ng-container>
+
+      <!-- Payment Reference Number Column -->
+      <ng-container matColumnDef="paymentReferenceNumber">
+        <th mat-header-cell *matHeaderCellDef> Payment reference number </th>
+        <td mat-cell *matCellDef="let element"> {{element.paymentReferenceNumber}} </td>
+      </ng-container>
+
+      <!-- Your Reference Column -->
+      <ng-container matColumnDef="yourReference">
+        <th mat-header-cell *matHeaderCellDef> Your reference </th>
+        <td mat-cell *matCellDef="let element"> {{element.yourReference}} </td>
+      </ng-container>
+
+      <!-- Their Reference Column -->
+      <ng-container matColumnDef="theirReference">
+        <th mat-header-cell *matHeaderCellDef> Their reference </th>
+        <td mat-cell *matCellDef="let element"> {{element.theirReference}} </td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+          <div class="row-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="width-100">
+              <div fxLayout="row" fxLayoutAlign="space-around center">
+                <div>
+                  <mat-card-subtitle>From account</mat-card-subtitle>
+                  <div>{{element.fromAccount}}</div>
+                </div>
+                <div>
+                  <mat-card-subtitle>To account</mat-card-subtitle>
+                  <div>{{element.toAccount}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      <!-- table rows and columns -->
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+      <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="table-row"
+        [class.expanded-table-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+    </table>
+  </div>
+  <!-- pagination  -->
+  <mat-paginator [pageSizeOptions]="[3, 6, 9, 12]" showFirstLastButtons aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

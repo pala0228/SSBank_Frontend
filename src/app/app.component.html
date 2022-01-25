@@ -1,13 +1,13 @@
-<mat-sidenav-container>
+<mat-sidenav-container class="container">
   <mat-sidenav>
     <app-sidenav></app-sidenav>
   </mat-sidenav>
   <mat-sidenav-content>
-    <main fxLayout="column" fxLayoutGap="3px" fxFlexFill>
+    <main fxLayout="column" fxFlexFill>
       <div>
         <app-header></app-header>
       </div>
-      <div fxFlex="calc(100vh - 120px)">
+      <div class="widgets-content">
         <router-outlet></router-outlet>
       </div>
       <div>

@@ -1,0 +1,28 @@
+.recipients-details {
+  width: 100%;
+  height: 100%;
+  &__edit-details {
+    cursor: pointer;
+    ::ng-deep {
+      .mat-card-subtitle {
+        color: #4ebcd4 !important;
+      }
+    }
+  }
+  &__edit-details:hover {
+    cursor: pointer;
+    ::ng-deep {
+      .mat-card-subtitle {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+    .mat-card-subtitle {
+      margin-bottom: 0px !important;
+    }
+  }
+}

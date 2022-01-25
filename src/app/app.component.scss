@@ -1,6 +1,17 @@
+@import "../assets/styles/variables.scss";
+
+.container {
+  background-color: map-get($slate, 1);
+}
+
 mat-sidenav-container,
 mat-sidenav,
 mat-sidenav-content {
   width: 100vw;
   height: 100vh;
+}
+.widgets-content {
+  width: 98vw;
+  height: calc(100vh - 170px);
+  margin: 0 auto;
 }
